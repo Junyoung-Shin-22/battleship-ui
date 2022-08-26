@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Battleship</title>
+    <link href="./styles/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1> BATTLESHIP </h1>
+<br>
+
+<div class="gamearea" id="gameArea">
+    
+    <div class="hcontainer" id="settingArea">
+        <div class="vcontainer">
+            <p>맵 크기: <input type="range" id="mapSizeRange" min="5" max="10" value="7"></p>
+            <p id="mapSizeP"></p>
+        </div>
+        
+        <div class="hcontainer_nooutline">
+            <input type="button" class="button" value="시작하기" id="startBtn">
+        </div>
+    </div>
+    
+    <br>
+    
+    <div class="hcontainer">
+        <div class="vcontainer"> 
+            <p id="currentScoreP">현재 기록: 0</p>
+            <p id="bestScoreP">최고 기록: 0</p>
+        </div>
+        <div class="hcontainer_nooutline">
+            <p id="messageP">서버에 연결하는 중...</p>
+        </div>
+    </div>
+
+    <div class="hcontainer", id="shipsInfoArea">
+        <p id="shipsInfoP", style="width: 100%">전함 개수: </p>
+    </div>
+
+    <div class="hcontainer" id="mapArea"></div>
+    
+</div>
+
+<script type="text/javascript" src="./main.js"></script>
+
+</body>
+</html>
