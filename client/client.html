@@ -1,49 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Battleship</title>
-    <link href="./styles/style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+    <head>
 
-<h1> BATTLESHIP </h1>
-<br>
+    </head>
+        <meta charset="utf-8" />
+        <title>Battleship</title>
+        <link href="./styles/style.css" rel="stylesheet" type="text/css">
+    <body>
+        <div class="centered_container">
 
-<div class="gamearea" id="gameArea">
+            <p class="title">BATTLESHIP</p>
+
+            <p class="message" id="messageP"></p>
+
+            <div style="display:flex; width:500px; align-items:flex-start;">
+                <div class="map_column" id="map">
+                </div>
+                
+                <div class="box" style="margin-left: 100px; cursor:default;">
+                    <div class="column">
+                        <div class="column">
+                            <div class="row"> 
+                                <p class="middle">현재 기록</p> <p class="middle" id="currentScoreP" style="margin-left: auto;">0</p>
+                            </div>
+                            <div class="row" style="margin-top: 0">
+                                <p class="middle">최고 기록</p> <p class="middle" id="highScoreP" style="margin-left: auto;">0</p>
+                            </div>
+                        </div>
     
-    <div class="hcontainer" id="settingArea">
-        <div class="vcontainer">
-            <p>맵 크기: <input type="range" id="mapSizeRange" min="5" max="10" value="7"></p>
-            <p id="mapSizeP"></p>
-        </div>
-        
-        <div class="hcontainer_nooutline">
-            <input type="button" class="button" value="시작하기" id="startBtn">
-        </div>
-    </div>
-    
-    <br>
-    
-    <div class="hcontainer">
-        <div class="vcontainer"> 
-            <p id="currentScoreP">현재 기록: 0</p>
-            <p id="bestScoreP">최고 기록: 0</p>
-        </div>
-        <div class="hcontainer_nooutline">
-            <p id="messageP">서버에 연결하는 중...</p>
-        </div>
-    </div>
+                        <br><br>
+                        
+                        <div class="column">
+                            <div class="row"> 
+                                <p class="small" id="shipSizeP0">함선1 (크기)</p> <p class="small" id="shipNumP0" style="margin-left: auto;">0</p>
+                            </div>
+                            <div class="row" style="margin-top: 0" >
+                                <p class="small" id="shipSizeP1">함선2 (크기)</p> <p class="small" id="shipNumP1" style="margin-left: auto;">0</p>
+                            </div>
+                            <div class="row" style="margin-top: 0">
+                                <p class="small" id="shipSizeP2">함선3 (크기)</p> <p class="small" id="shipNumP2" style="margin-left: auto;">0</p>
+                            </div>
+                            <div class="row" style="margin-top: 0">
+                                <p class="small" id="shipSizeP3">함선4 (크기)</p> <p class="small" id="shipNumP3" style="margin-left: auto;">0</p>
+                            </div>
+                            <div class="row" style="margin-top: 0">
+                                <p class="small" id="shipSizeP4">함선5 (크기)</p> <p class="small" id="shipNumP4" style="margin-left: auto;">0</p>
+                            </div>
+                        </div>
 
-    <div class="hcontainer", id="shipsInfoArea">
-        <p id="shipsInfoP", style="width: 100%">전함 개수: </p>
-    </div>
+                        <br><br><br><br>
+                        
+                        <div class="column">
+                            <div class="row"> 
+                                <p class="small">맵 크기</p> <p class="small" id="mapSizeP" style="margin-left: auto">10 x 10</p>
+                            </div>
+                            <div class="row" style="margin-top: 0">
+                                <input type="range" id="mapSizeRange" min="5" max="10" value="10" style="width: 100%;">
+                            </div>
+                        </div>
 
-    <div class="hcontainer" id="mapArea"></div>
-    
-</div>
+                        <hr style="margin:5%;">
 
-<script type="text/javascript" src="./main.js"></script>
+                        <div class="row">
+                            <input class="button" value="시작하기" id="startBtn"> 
+                        </div>
+                        <div class="row">
+                            <input class="button" value="초기화" id="resetBtn"> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</body>
+        <script type="text/javascript" src="./main.js"></script>
+    </body>
 </html>

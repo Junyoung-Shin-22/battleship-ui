@@ -5,7 +5,7 @@ import parse
 
 async def on_message(websocket):
     async for message in websocket:
-        print(message)
+        # print(message)
         function, json_dict = parse.parse(message)
         await function(websocket, **json_dict)
     

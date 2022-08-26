@@ -1,0 +1,13 @@
+GLOBAL_TIMESTAMP = 0;
+GLOBAL_WEBSOCKET = undefined;
+
+GLOBAL_HIGH_SCORE = {
+    5:  25,
+    6:  36,
+    7:  49,
+    8:  64,
+    9:  81,
+    10: 100,
+};
+GLOBAL_CURRENT_SCORE = 0;
+GLOBAL_MAP_SIZE = 0;

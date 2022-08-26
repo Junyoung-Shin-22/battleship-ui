@@ -1,24 +1,31 @@
-GLOBAL_TIMESTAMP = 0;
-
-script_srcs = ['./gui.js', './websocket.js']
+script_srcs = ['./global.js', './websocket.js', './protocols.js', './gui.js']
 script_srcs.forEach(src => {
-    scriptElem = document.createElement('script');
-    scriptElem.src = src;
-    scriptElem.type = "text/javascript";
+    script = document.createElement('script');
+    script.src = src;
+    script.type = "text/javascript";
 
-    document.body.appendChild(scriptElem);
+    document.body.appendChild(script);
 });
 
 startBtn = document.getElementById('startBtn');
+resetBtn = document.getElementById('resetBtn');
 
 // game start trigger
-startBtn.onclick = function (){
-    GLOBAL_TIMESTAMP = + new Date();
+startBtn.onclick = function () {
+    startBtn.disabled = true;
+    sizeRange.disabled = true;
+    initializeGUI();
 
-    msg = {
+    json = {
         'type': 'game_start',
         'timestamp': GLOBAL_TIMESTAMP,
         'map_size': 1 * sizeRange.value,
     }
-    webSocket.send(JSON.stringify(msg))
+    send_json(json);
+};
+
+resetBtn.onclick = function () {
+    initializeGUI();
+    startBtn.disabled = false;
+    sizeRange.disabled = false;
 };

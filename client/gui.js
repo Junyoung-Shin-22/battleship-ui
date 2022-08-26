@@ -3,12 +3,15 @@ function createBox(i, j) {
     box.setAttribute('id', i+'-'+j);
     box.classList.add('box');
 
-    box.onclick = () => {webSocket.send(JSON.stringify({
-        'type': 'game_play',
-        'timestamp': GLOBAL_TIMESTAMP,
-        'i': i,
-        'j': j,
-    }))};
+    box.onclick = function () {
+        json = {
+            'type': 'game_play',
+            'timestamp': GLOBAL_TIMESTAMP,
+            'i': i,
+            'j': j,
+        }
+        send_json(json);
+    };
     return box;
 }
 
@@ -17,12 +20,15 @@ function getBox(i, j){
 }
 
 function createTable(rows, columns) {
-    tbl = document.createElement('div');
-    tbl.classList.add('table');
+    map = document.getElementById('map');
+
+    while (map.firstChild) {
+        map.removeChild(map.firstChild);
+    }
 
     for (let i=0; i<rows; i++) {
         row = document.createElement('div');
-        row.classList.add('row');
+        row.classList.add('map_row');
 
         for (let j=0; j<columns; j++){
             box = document.createElement('div');
@@ -31,33 +37,57 @@ function createTable(rows, columns) {
             row.appendChild(box);
         }
         
-        tbl.appendChild(row);
+        map.appendChild(row);
     }
-
-    return tbl;
 }
 
-function updateMapSize() {
-    s = sizeRange.value;
-    sizeP.textContent = '(' + s + ' x ' + s + ')';
+function initializeGUI() {
+    GLOBAL_CURRENT_SCORE = 0;
+    GLOBAL_TIMESTAMP = + new Date();
+    GLOBAL_MAP_SIZE = sizeRange.value;
 
-    map = createTable(s, s);
-    
-    while (mapArea.firstChild) {
-        mapArea.removeChild(mapArea.firstChild);
+    size = sizeRange.value;
+    sizeP.textContent = '(' + size + ' x ' + size + ')';
+
+    createTable(size, size);
+
+    currentScoreP.textContent = GLOBAL_CURRENT_SCORE;
+    highScoreP.textContent = GLOBAL_HIGH_SCORE[size];
+
+    if (GLOBAL_WEBSOCKET.readyState == 0) {
+        messageP.style.color = 'black'
+        messageP.textContent = '서버에 연결하는중'
     }
-    mapArea.appendChild(map);
+    else if (GLOBAL_WEBSOCKET.readyState == 1) {
+        messageP.style.color = 'green';
+        messageP.textContent = '서버 연결 성공';
+    }
+    else {
+        messageP.style.color = 'red';
+        messageP.textContent = '서버 연결 없음';
+    }
 
-    messageP.textContent = '(서버에 연결됨)'
+    for (i = 0; i < 5; i++) {
+        getShipSizeP(i).textContent = '.';
+        getShipNumP(i).textContent = '';
+    }
 }
 
 sizeRange = document.getElementById('mapSizeRange');
-sizeRange.addEventListener('input', updateMapSize);
+sizeRange.addEventListener('input', initializeGUI);
 sizeP = document.getElementById('mapSizeP');
 
-shipsInfoP = document.getElementById('shipsInfoP')
-
 messageP = document.getElementById('messageP');
-mapArea = document.getElementById('mapArea');
 
-updateMapSize();
+function getShipSizeP(i){
+    return document.getElementById('shipSizeP'+i);
+}
+
+function getShipNumP(i){
+    return document.getElementById('shipNumP'+i);
+}
+
+currentScoreP = document.getElementById('currentScoreP');
+highScoreP = document.getElementById('highScoreP')
+
+initializeGUI();

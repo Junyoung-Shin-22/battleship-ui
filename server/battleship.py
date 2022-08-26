@@ -33,7 +33,7 @@ class Map:
         self.ships = []
 
         self.place_ships()
-        self.display()
+        # self.display()
     
     def place_ships(self):
         for ship_size in range(5, 0, -1):
@@ -49,9 +49,10 @@ class Map:
                 ship.area[(i, j)] = True
                 
                 if ship.is_sunken():
+                    if all(s.is_sunken() for s in self.ships):
+                        return 3, list(ship.area.keys())
                     return 2, list(ship.area.keys())
-                else:
-                    return 1, []
+                return 1, []
         return 0, []
     
     def display(self):
