@@ -2,7 +2,7 @@
 
 ## 1. Requirements
 
-`pip install websockets`
+`$ pip install websockets`
 
 ## 2. Usage
 
