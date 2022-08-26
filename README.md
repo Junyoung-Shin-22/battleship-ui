@@ -6,6 +6,9 @@
 
 ## 2. Usage
 
+Open the server first by:
 ```
-$ python server/main.py
+$ python server/run.py
 ```
+
+then, open the client (`client/client.html`) on your browser to play.
